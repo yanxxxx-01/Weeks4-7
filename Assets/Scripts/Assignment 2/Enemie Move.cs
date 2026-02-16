@@ -11,8 +11,8 @@ public class EnemieMove : MonoBehaviour
     {
         Vector2 pos = transform.position;
         pos.x = Random.Range(-10f, 10f); // Set the initial horizontal position of the enemy to a random value between -10 and 10
-        pos.y = Random.Range(-2f,5f); // Set the initial vertical position of the enemy to 5
-        speed = Random.Range(0.01f, 0.05f); // Set the speed of the enemy to a random value between 0.05 and 0.1
+        pos.y = Random.Range(-2f,4f); // Set the initial vertical position of the enemy to 5
+        speed = Random.Range(0.01f, 0.03f); // Set the speed of the enemy to a random value between 0.05 and 0.1
         transform.position = pos;
     }
 
@@ -36,14 +36,6 @@ public class EnemieMove : MonoBehaviour
             transform.position = pos;
         }
 
-        //if the distance between the enemy and the bullet is less than 2, it is considered a hit and destroy the enemy, and add one point to the score
-        //float dis = Vector2.Distance(transform.position, bullet.transform.position);
-        
-        //if (dis < 3 && bullet != null)
-        //{
-        //    Debug.Log("Killed! ");
-        //    Destroy(gameObject);
-        //    points += 1; //add one point to the score
-        //}
+       
     }
 }

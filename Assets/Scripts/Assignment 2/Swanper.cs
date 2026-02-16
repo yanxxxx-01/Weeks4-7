@@ -20,30 +20,14 @@ public class Swanper : MonoBehaviour
     void Update()
     {
 
-
-
-        ////check the distance between the bullet and the enemy, if it is less than 2, it is considered a hit and destroy the bullet
-        //float dis = Vector2.Distance(transform.position, bullets.transform.position);
-        //if (dis < 3f)
-        //{
-        //    //if the distance is less than 2, it is considered a hit and destroy the bullet
-        //    Debug.Log("Distance: " + dis);
-        //    Debug.Log("Great!");
-        //    Destroy(bullets);
-
-        //    audioY.Play();//play the audio
-        //}
-
     }
 
-    public void attack()
+    public void Attack()
     {
         // Instantiate the bullet prefab at the position of the swanper
         {
-
             bullets = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bulletList.Add(bullets);
-           
         }
     }
 }
