@@ -16,7 +16,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {     
         transform.position += transform.right * Time.deltaTime * speed; // Move the bullet in the direction it is facing
-        Destroy(gameObject, 4f);// Destroy the bullet after 4 seconds to prevent it from existing indefinitely
 
 
     }
