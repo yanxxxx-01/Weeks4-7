@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float time = 0f;
-    public float timeMax = 10f;
+    public float timeMax = 50f;
     public Slider timerVisual;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,13 +15,12 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time = Time.deltaTime + time;
+        time -= Time.deltaTime;
 
-        if(time >= timeMax)
+        if(time < 0)
         {
-         
-            time = 0f;
-            
+            time = timeMax;
+            Debug.Log("Time's up!");
         }
         timerVisual.value = time;
     }

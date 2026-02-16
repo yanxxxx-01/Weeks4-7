@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Swanper : MonoBehaviour
 {
     public int points = 0; // Variable to keep track of the score
+    public TextMeshProUGUI scoreText; // Reference to the TextMeshProUGUI component to display the score
 
     public GameObject bulletPrefab; // Reference to the bullet prefab
     public GameObject bullets; // Reference to the instantiated bullet
     public List<GameObject> bulletList = new List<GameObject>(); // Array to hold the instantiated bullets
-     Vector2 bulletPos; // Variable to hold the position of the bullet
+    Vector2 bulletPos; // Variable to hold the position of the bullet
 
     public AudioSource audioY;
 
@@ -33,13 +35,17 @@ public class Swanper : MonoBehaviour
         // Check if the number of enemies in the list is less than the maximum allowed
         if (enemyList.Count < enemyMax)
         {
-            enemySwanpe = Instantiate(enemy, transform.position, transform.rotation);
+            enemySwanpe = Instantiate(enemy, transform.position, Quaternion.identity);
             enemyList.Add(enemySwanpe);
         }
 
         // Loop through the bullet list in reverse order to check for collisions with enemies
         for (int i = bulletList.Count - 1; i >= 0; i--)
         {
+            if (bulletList[i] == null) // If the bullet has already been destroyed, just remove it from the list
+            {
+                bulletList.RemoveAt(i);
+            }
             bulletPos = bulletList[i].transform.position; //Check all the bullets in the list and get their position
             Destroy(bulletList[i], 4f);// Destroy the bullet after 4 seconds to prevent it from existing indefinitely
 
@@ -55,6 +61,9 @@ public class Swanper : MonoBehaviour
                     Debug.Log("You Got it! ");
 
                     points += 1; //add one point to the score
+                    scoreText.text = "Score: " + points; //update the score text on the UI
+
+                    Debug.Log("Your Score: " + points); //print the score to the console
                     Destroy(enemyList[j]);//destroy the enemy
                     enemyList.RemoveAt(j); //remove the enemy from the list //reference https://docs.unity3d.com/2017.1/Documentation/ScriptReference/Array.RemoveAt.html
 
@@ -63,16 +72,17 @@ public class Swanper : MonoBehaviour
                         Destroy(bulletList[i]);//destroy the bullet
                         bulletList.RemoveAt(i); //remove the bullet from the list
                     }
+                    
                 }
-            }
 
-          
+
+
+            }
+            //get the position of the bullet and the enemy
+
+            // if the distance between the enemy and the bullet is less than 2, it is considered a hit and destroy the enemy, and add one point to the score
 
         }
-        //get the position of the bullet and the enemy
-        
-        // if the distance between the enemy and the bullet is less than 2, it is considered a hit and destroy the enemy, and add one point to the score
-       
     }
 
     public void Attack()
