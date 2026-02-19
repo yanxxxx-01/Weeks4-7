@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Spawns : MonoBehaviour
 {
     public GameObject tank;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
